@@ -76,6 +76,7 @@
 - Editar producto
 - Eliminar producto
 - Cambiar disponibilidad
+- Cerrar sesión
 
 ### Cliente
 - Ver catálogo con nombre, precio (en **soles**) y disponibilidad
