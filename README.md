@@ -8,7 +8,7 @@
 
 ### 🔐 Login (Autenticación Interna)
 
-![image](https://github.com/user-attachments/assets/446e3722-c5a7-4f50-8728-a2f888653f02)
+![image](https://github.com/user-attachments/assets/eda37fe3-e033-488a-b401-3ae07369d7f1)
 
 > Acceso protegido con credenciales internas para el administrador.
 
