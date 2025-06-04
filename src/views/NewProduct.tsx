@@ -3,15 +3,15 @@ import ErrorMessage from "../components/ErrorMessage";
 import { addProduct } from "../services/ProductService";
 import ProductForm from "../ProductForm";
 
-export async function action({request} : ActionFunctionArgs){
+export async function action({ request }: ActionFunctionArgs) {
     const data = Object.fromEntries(await request.formData())
     let error = ''
 
-    if(Object.values(data).includes('')){
+    if (Object.values(data).includes('')) {
         error = 'Todos los campos son obligatorios'
     }
 
-    if(error.length){
+    if (error.length) {
         return error
     }
     await addProduct(data) //la siguiente linea no se ejecutara hasta que addProduct finalice
@@ -23,28 +23,31 @@ export default function NewProduct() {
     const error = useActionData() as string //se usa cuando queremos obtener resultados de lo que enviamos
     return (
         <>
-            <div className='flex justify-between'>
-                <h2 className='text-4xl font-black text-slate-500'>Registrar Producto</h2>
-                <Link
-                    to="/"
-                    className='rounded-md bg-indigo-600 p-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500'
+            <div className="p-10 max-w-4xl mx-auto bg-white m-10 rounded-xl shadow-md">
+                <div className='flex justify-between'>
+                    <h2 className='text-4xl font-bold text-emerald-700'>Registrar Producto</h2>
+                    <Link
+                        to="/"
+                        className=' transition-colors rounded-xl font-semibold underline p-3 text-emerald-600 text-base hover:text-emerald-500'
+                    >
+                        Volver a Productos
+                    </Link>
+                </div>
+                {error && <ErrorMessage>{error}</ErrorMessage>}
+                <Form
+                    className="mt-10"
+                    method="POST"
                 >
-                    Volver a Productos
-                </Link>
-            </div>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            <Form
-                className="mt-10"
-                method="POST"
-            >
 
-                <ProductForm />
-                <input
-                    type="submit"
-                    className="mt-5 w-full bg-indigo-600 p-2 text-white font-bold text-lg cursor-pointer rounded"
-                    value="Registrar Producto"
-                />
-            </Form>
+                    <ProductForm />
+                    <input
+                        type="submit"
+                        className="mt-5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 transition-colors p-2 text-white font-bold text-lg cursor-pointer"
+                        value="Registrar Producto"
+                    />
+                </Form>
+
+            </div>
         </>
     )
 }

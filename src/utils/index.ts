@@ -1,10 +1,10 @@
-export function formatCurrency(amount : number){
-    return new Intl.NumberFormat('en-US',{
+export function formatCurrency(amount: number) {
+    return new Intl.NumberFormat('es-PE', {
         style: 'currency',
-        currency: 'USD'
+        currency: 'PEN'
     }).format(amount)
 }
 
-export function toBoolean(str: string){
-    return str.toLowerCase() === "true" 
+export function toBoolean(str: string) {
+    return str.toLowerCase() === "true"
 }

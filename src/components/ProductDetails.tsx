@@ -2,6 +2,7 @@ import { ActionFunctionArgs, Form, redirect, useFetcher, useNavigate } from 'rea
 import { Product } from "../types"
 import { formatCurrency } from "../utils"
 import { deleteProduct } from '../services/ProductService'
+import { Pencil, Trash } from 'lucide-react'
 
 type ProductDetailsProps = {
     product: Product
@@ -18,16 +19,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
     const isAvailable = product.availability
 
     return (
-        <tr className="border-b ">
-            <td className="p-3 text-lg text-gray-800">
+        <tr className="">
+            <td className="p-3 text-lg text-gray-800 w-1/4">
                 {product.name}
             </td>
-            <td className="p-3 text-lg text-gray-800">
+            <td className="p-3 text-lg text-gray-800  w-1/4">
                 {formatCurrency(product.price)}
             </td>
 
-            <td className="p-3 text-lg text-gray-800">
-                <fetcher.Form method='POST'>
+            <td className="p-3 text-lg text-gray-800 w-1/4">
+                <fetcher.Form method="POST">
                     <button
                         type='submit'
                         name='id'
@@ -40,27 +41,28 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                     </button>
                 </fetcher.Form>
             </td>
-            <td className="p-3 text-lg text-gray-800 ">
-                <div className="flex gap-2 items-center">
+            <td className="p-3 text-lg text-gray-800 w-1/4 ">
+                <div className="flex gap-2 justify-end">
                     <button
-                        onClick={() => navigate(`productos/${product.id}/editar`)}
-                        className='bg-indigo-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center'
-                    >Editar</button>
+                        onClick={() => navigate(`${product.id}/editar`)}
+                        className="border border-amber-300 text-amber-600 hover:bg-amber-50 hover:text-amber-700 rounded-lg p-2 uppercase font-bold text-xs text-center flex items-center justify-center gap-2"
+                    >
+                        <Pencil className='w-5 h-5'/>
+                    </button>
                     <Form
-                        className='w-full'
                         method='POST'
-                        action={`productos/${product.id}/eliminar`} //se dirije a esta ruta
+                        action={`${product.id}/eliminar`} //se dirije a esta ruta
                         onSubmit={(e) => {
-                            if (!confirm('¿Eliminar')) {
+                            if (!confirm('¿Eliminar?')) {
                                 e.preventDefault()
                             }
                         }}
                     >
-                        <input
+                        <button
                             type='submit'
-                            value='Eliminar'
-                            className='cursor-pointer bg-red-600 text-white rounded-lg w-full p-2 uppercase font-bold text-xs text-center'
-                        />
+                            className='cursor-pointer border border-rose-300 text-rose-600 hover:bg-rose-50 hover:text-rose-700 rounded-lg p-2 uppercase font-bold text-xs text-center'
+
+                        ><Trash className='w-5 h-5'/></button>
                     </Form>
                 </div>
             </td>
